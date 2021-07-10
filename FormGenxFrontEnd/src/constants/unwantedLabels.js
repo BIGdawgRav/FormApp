@@ -1,0 +1,1 @@
+export const unwantedVariables =[ "TwoColumnRow" , "HyperLink" , "Paragraph" , "Label" , "Header" ]

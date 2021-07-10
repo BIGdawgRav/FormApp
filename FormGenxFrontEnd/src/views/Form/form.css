@@ -1,0 +1,25 @@
+ @import url('https://use.fontawesome.com/releases/v5.13.0/css/all.css');
+/*  
+ @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');  */ */ */
+
+
+body {
+  font-size: 14px;
+  font-weight: 300;
+  color: #000000;
+  width: 1200px;
+  margin: 0 auto;
+}
+li {
+  color : #000000 !important
+} 
+
+.modal {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* .modal-content {
+  padding: 30000px;
+  max-height: 800px;
+  overflow-y: auto
+} */
