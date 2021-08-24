@@ -184,14 +184,15 @@ WSGI_APPLICATION = 'FormApp.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
+            'NAME': 'formdatabase',
+            'ENFORCE_SCHEMA': False,
             'Client': {
                "name": 'formdatabase',
-           "host": MONGODB_URI,
+           "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
            "username": 'Raveen',
            "password": '8VBCDyi6BkL3vh',
            "authMechanism": "SCRAM-SHA-1", 
             },
-            'ENFORCE_SCHEMA': False,
             'LOGGING': {
                 'version': 1,
                 'loggers': {
