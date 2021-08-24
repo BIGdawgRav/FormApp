@@ -174,20 +174,51 @@ WSGI_APPLICATION = 'FormApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'ENFORCE_SCHEMA': False,
+#             'Client': {
+#                "name": 'formdatabase',
+#            "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
+#            "username": 'Raveen',
+#            "password": '8VBCDyi6BkL3vh',
+#            "authMechanism": "SCRAM-SHA-1", 
+#             },
+#             'LOGGING': {
+#                 'version': 1,
+#                 'loggers': {
+#                     'djongo': {
+#                         'level': 'DEBUG',
+#                         'propagate': False,                        
+#                     }
+#                 },
+#              },
+#         }
+#     }
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'ENFORCE_SCHEMA': False,
-            'Client': {
-               "name": 'formdatabase',
+            
+            'Client': { 
            "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
            "username": 'Raveen',
            "password": '8VBCDyi6BkL3vh',
            "authMechanism": "SCRAM-SHA-1", 
             },
-         
         }
     }
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'CLIENT': {
+#             'host': 'mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority',
+#             'username': 'Raveen',
+#             'password': '8VBCDyi6BkL3vh',
+#             'authMechanism': 'SCRAM-SHA-1'
+#         }
+#     }
+# }
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
