@@ -177,7 +177,6 @@ WSGI_APPLICATION = 'FormApp.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': 'formdatabase',
             'ENFORCE_SCHEMA': False,
             'Client': {
                "name": 'formdatabase',
@@ -186,15 +185,7 @@ DATABASES = {
            "password": '8VBCDyi6BkL3vh',
            "authMechanism": "SCRAM-SHA-1", 
             },
-            'LOGGING': {
-                'version': 1,
-                'loggers': {
-                    'djongo': {
-                        'level': 'DEBUG',
-                        'propagate': False,                        
-                    }
-                },
-             },
+         
         }
     }
 
