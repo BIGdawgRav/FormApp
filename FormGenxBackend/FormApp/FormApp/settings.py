@@ -45,7 +45,7 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = os.environ.get('ACCOUNT_EMAI
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/login/')
 OLD_PASSWORD_FIELD_ENABLED = True
 NOTIFICATIONS_EMAIL_ADDRESS = os.environ.get('NOTIFICATIONS_EMAIL_ADDRESS', "iStaffNotifications@gmail.com")
-
+MONGODB_URI = os.environ.get('MONGODB_URI',"mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority")
 SITE_ID = 1
 
 JOB_STILL_VIEWABLE_OFFSET = 4 # We should be able to see a job up to 4 hours after it has passed.
@@ -184,7 +184,13 @@ WSGI_APPLICATION = 'FormApp.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': 'formdatabase',
+            'Client': {
+               "name": 'formdatabase',
+           "host": MONGODB_URI,
+           "username": 'Raveen',
+           "password": '8VBCDyi6BkL3vh',
+           "authMechanism": "SCRAM-SHA-1", 
+            },
             'ENFORCE_SCHEMA': False,
             'LOGGING': {
                 'version': 1,
