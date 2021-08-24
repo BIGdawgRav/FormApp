@@ -11,6 +11,6 @@ ls ..
 
 ls ..
 
-cd FormGexFrontEnd
+cd FormGenxFrontEnd
 
 code .
