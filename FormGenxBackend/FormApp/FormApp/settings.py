@@ -25,15 +25,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 DEBUG_PROPAGATE_EXCEPTIONS = os.environ.get('DEBUG_PROPAGATE_EXCEPTIONS', False)
-
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
-# ALLOWED_HOSTS = [""]
 
-print(ALLOWED_HOSTS)
 # Application additions
 AUTH_USER_MODEL = 'user.User'
-
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -174,40 +169,29 @@ WSGI_APPLICATION = 'FormApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            'host': 'mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority',
+            'username': 'Raveen',
+            'password': '8VBCDyi6BkL3vh',
+            'authMechanism': 'SCRAM-SHA-1'
+        }
+    }
+}
 # DATABASES = {
 #         'default': {
 #             'ENGINE': 'djongo',
-#             'ENFORCE_SCHEMA': False,
-#             'Client': {
-#                "name": 'formdatabase',
+            
+#             'Client': { 
 #            "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
 #            "username": 'Raveen',
 #            "password": '8VBCDyi6BkL3vh',
 #            "authMechanism": "SCRAM-SHA-1", 
 #             },
-#             'LOGGING': {
-#                 'version': 1,
-#                 'loggers': {
-#                     'djongo': {
-#                         'level': 'DEBUG',
-#                         'propagate': False,                        
-#                     }
-#                 },
-#              },
 #         }
 #     }
-DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            
-            'Client': { 
-           "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
-           "username": 'Raveen',
-           "password": '8VBCDyi6BkL3vh',
-           "authMechanism": "SCRAM-SHA-1", 
-            },
-        }
-    }
 #     DATABASES = {
 #     'default': {
 #         'ENGINE': 'djongo',
