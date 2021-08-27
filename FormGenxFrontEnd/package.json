@@ -1,6 +1,8 @@
 {
-  "name": "simple-light-react",
+  "name": "raveen-form0genx",
   "version": "0.1.0",
+  "description": "iStaff's internal HRM dashboard",
+  "proxy": "https://formgenxstaging.herokuapp.com",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
