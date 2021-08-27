@@ -239,7 +239,7 @@ if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
 if os.environ.get('CORS_ALLOWED_ORIGINS'):
     CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(',')
 
-g
+
 # Internationalization
 
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
