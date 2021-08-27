@@ -4,7 +4,7 @@
 
 
 //Staging
-export const backEndBaseUrl = "https://formgenxstaging.herokuapp.com";
+// export const backEndBaseUrl = "https://formgenxstaging.herokuapp.com";
 
-//local
-// export const backEndBaseUrl = "http://localhost:8000";
+// local
+export const backEndBaseUrl = "http://localhost:8000";

@@ -123,7 +123,8 @@ AUTHENTICATION_BACKEND = ["django.contrib.auth.backends.ModelBackend","sesame.ba
 
 
 MIDDLEWARE = [
-    
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -230,15 +231,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
-#     # To Regex an environment variable, we must first convert them to a raw string.
-#     CORS_ALLOWED_ORIGIN_REGEXES = [ r"{0}".format(allowed_origin) for allowed_origin in os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES').split(',')  ]
+if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
+    # To Regex an environment variable, we must first convert them to a raw string.
+    CORS_ALLOWED_ORIGIN_REGEXES = [ r"{0}".format(allowed_origin) for allowed_origin in os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES').split(',')  ]
 
-# if os.environ.get('CORS_ALLOWED_ORIGINS'):
-#     CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(',')
+if os.environ.get('CORS_ALLOWED_ORIGINS'):
+    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(',')
 
-
+    print(CORS_ALLOWED_ORIGINS)
 # Internationalization
+
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'

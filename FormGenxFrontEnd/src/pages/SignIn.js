@@ -102,11 +102,11 @@ const SignIn = (props) => {
             password: loginDetails.password,
           },
           {
-            headers: {},
+            headers: { },
           }
         )
         .then((response) => {
-
+          console.log(response);
 
           if (response.data.user.is_creator || response.data.user.is_formuser) {
 
@@ -261,7 +261,7 @@ const SignIn = (props) => {
                             style={{ width: 400 }}
 
                             onKeyDown={(e) => {
-                          
+
                               if (e.key === "Enter") {
                                 handleSignIn(e);
                               }
@@ -304,7 +304,7 @@ const SignIn = (props) => {
 
                     </Button>
 
-                  
+
 
                   </div>
                 </form>

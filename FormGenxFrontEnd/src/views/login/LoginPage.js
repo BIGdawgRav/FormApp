@@ -33,11 +33,11 @@ import {
   InputGroup,
 
 } from "reactstrap";
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
-import {backEndBaseUrl} from "../../constants/Urls"
+import { backEndBaseUrl } from "../../constants/Urls"
 import { notify } from "../../functions/functions"
 
 
@@ -109,7 +109,7 @@ const LoginPage = (props) => {
   };
 
   const handleSignIn = () => {
-   
+
     if (mounted) {
       setLoginState({ isLoading: true });
 
@@ -121,14 +121,17 @@ const LoginPage = (props) => {
             password: loginDetails.password,
           },
           {
-            headers: {},
+            headers: { },
           }
         )
         .then((response) => {
-          
+
+          console.log("djdjd")
+
+          console.log(response)
           if (response.data.user.is_creator || response.data.user.is_formuser) {
             window.sessionStorage.setItem("userToken", response.data.key);
-      
+
             window.sessionStorage.setItem(
               "isCreator",
               response.data.user.is_creator
@@ -148,10 +151,10 @@ const LoginPage = (props) => {
             });
 
             if (response.data.user.is_creator) {
-              
-   
+
+
               history.push("/admin/dashboard");
-            } 
+            }
           } else {
             props.dispatch({ type: "SIGNOUT" });
             setErrors({
@@ -188,86 +191,87 @@ const LoginPage = (props) => {
 
   return (
     <>
-     
-    
-        
-
-                  <Card className="card-register" >
-                    <CardHeader >
-
-                    
-                      <CardImg
-                        alt="..."
-                       
-                        
-                        src={require("./../../assets/img/square4.png").default}
-                      /> 
-
-                      <CardTitle   >  <div style={{ paddingLeft: 50 }}>  Login  </div>  </CardTitle>
-
-                    </CardHeader>
-                    <CardBody>
-                      <Form className="form">
-                       
-                        <InputGroup
-                          className={classnames({
-                            "input-group-focus": emailFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-email-85" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Email"
-                            type="text"
-                            onFocus={(e) => setEmailFocus(true)}
-                            onBlur={(e) => setEmailFocus(false)}
-                            onChange={(e) => {
-                              emailInputChange(e);
-                            }}
-                          />
-                        </InputGroup>
-                        <InputGroup
-                          className={classnames({
-                            "input-group-focus": passwordFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-lock-circle" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Password"
-                            type="password"
-                            onFocus={(e) => setPasswordFocus(true)}
-                            onBlur={(e) => setPasswordFocus(false)}
-                            onChange={(val) => passwordInputChange(val)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                handleSignIn();
-                              }    }}
 
 
-                          />
-                        </InputGroup>
-         
-                      </Form>
-                    </CardBody>
 
-                    <CardFooter>
-                      <Button className="btn-round" color= "info" size="lg"   onClick={() => {
-                              handleSignIn();
-                            }}>
-                        Login
-                      </Button>
-                      
-                    </CardFooter>
-                  </Card>
-            
-   
+
+      <Card className="card-register" >
+        <CardHeader >
+
+
+          <CardImg
+            alt="..."
+
+
+            src={require("./../../assets/img/square4.png").default}
+          />
+
+          <CardTitle   >  <div style={{ paddingLeft: 50 }}>  Login  </div>  </CardTitle>
+
+        </CardHeader>
+        <CardBody>
+          <Form className="form">
+
+            <InputGroup
+              className={classnames({
+                "input-group-focus": emailFocus,
+              })}
+            >
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="tim-icons icon-email-85" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input
+                placeholder="Email"
+                type="text"
+                onFocus={(e) => setEmailFocus(true)}
+                onBlur={(e) => setEmailFocus(false)}
+                onChange={(e) => {
+                  emailInputChange(e);
+                }}
+              />
+            </InputGroup>
+            <InputGroup
+              className={classnames({
+                "input-group-focus": passwordFocus,
+              })}
+            >
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="tim-icons icon-lock-circle" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input
+                placeholder="Password"
+                type="password"
+                onFocus={(e) => setPasswordFocus(true)}
+                onBlur={(e) => setPasswordFocus(false)}
+                onChange={(val) => passwordInputChange(val)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSignIn();
+                  }
+                }}
+
+
+              />
+            </InputGroup>
+
+          </Form>
+        </CardBody>
+
+        <CardFooter>
+          <Button className="btn-round" color="info" size="lg" onClick={() => {
+            handleSignIn();
+          }}>
+            Login
+          </Button>
+
+        </CardFooter>
+      </Card>
+
+
     </>
   );
 }

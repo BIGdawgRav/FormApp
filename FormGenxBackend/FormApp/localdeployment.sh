@@ -10,7 +10,8 @@ export DEBUG=True
 export ALLOWED_HOSTS='127.0.0.1,,localhost,testserver'
 export DEBUG_PROPAGATE_EXCEPTIONS='True'
 export DEFAULT_RENDERER_CLASS='rest_framework.renderers.JSONRenderer'
-export CORS_ALLOWED_ORIGIN='localhost'
+export CORS_ALLOWED_ORIGIN_REGEXES='(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?),'
+export CORS_ALLOWED_ORIGINS='http://localhost:3000'
 export SERVER_TIME_OFFSET=0 # Local server offset is 0.
 
 

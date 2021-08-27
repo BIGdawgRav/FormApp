@@ -2,7 +2,6 @@
   "name": "raveen-form0genx",
   "version": "0.1.0",
   "description": "iStaff's internal HRM dashboard",
-  "proxy": "https://formgenxstaging.herokuapp.com",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
@@ -48,6 +47,7 @@
     "test": "craco test",
     "eject": "craco eject"
   },
+  "proxy": "http://localhost:4000",
   "eslintConfig": {
     "extends": "react-app"
   },
