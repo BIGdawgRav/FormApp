@@ -13,6 +13,8 @@ export DEFAULT_RENDERER_CLASS='rest_framework.renderers.JSONRenderer'
 export CORS_ALLOWED_ORIGIN_REGEXES='(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?),'
 export CORS_ALLOWED_ORIGINS='http://localhost:3000'
 export SERVER_TIME_OFFSET=0 # Local server offset is 0.
+export MONGO_USERNAME="Raveen"
+export MONGO_PASSWORD="8VBCDyi6BkL3vh"
 
 
 echo "             ############"

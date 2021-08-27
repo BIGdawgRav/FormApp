@@ -39,7 +39,7 @@ class FormApiView(generics.GenericAPIView):
         serializer = FormEntrySerializer(data=request.data)
 
         if (serializer.is_valid()):
-            print(serializer.data)
+            
             return Response(status=status.HTTP_202_ACCEPTED)
 
         return Response(status=status.HTTP_406_NOT_ACCEPTABLE)

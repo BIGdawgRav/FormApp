@@ -40,11 +40,11 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = os.environ.get('ACCOUNT_EMAI
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/login/')
 OLD_PASSWORD_FIELD_ENABLED = True
 NOTIFICATIONS_EMAIL_ADDRESS = os.environ.get('NOTIFICATIONS_EMAIL_ADDRESS', "iStaffNotifications@gmail.com")
-MONGODB_URI = os.environ.get('MONGODB_URI',"mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority")
+MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
+MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
 SITE_ID = 1
 
 JOB_STILL_VIEWABLE_OFFSET = 4 # We should be able to see a job up to 4 hours after it has passed.
-
 
 
 # Email Backend Configuration
@@ -107,42 +107,30 @@ REST_FRAMEWORK = {
 
 AUTHENTICATION_BACKEND = ["django.contrib.auth.backends.ModelBackend","sesame.backends.ModelBackend"]
 
+if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
+    # To Regex an environment variable, we must first convert them to a raw string.
+    CORS_ALLOWED_ORIGIN_REGEXES = [ r"{0}".format(allowed_origin) for allowed_origin in os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES').split(',')  ]
 
-# # settings.py
-# MAGIC_LINK = {
-#     # link expiry, in seconds
-#     "DEFAULT_EXPIRY": 300,
-#     # default link redirect
-#     "DEFAULT_REDIRECT": "/",
-#     # the preferred authorization backend to use, in the case where you have more
-#     # than one specified in the `settings.AUTHORIZATION_BACKENDS` setting.
-#     "AUTHENTICATION_BACKEND": "django.contrib.auth.backends.ModelBackend",
-#     # SESSION_COOKIE_AGE override for magic-link logins - in seconds (default is 1 week)
-#     "SESSION_EXPIRY": 7 * 24 * 60 * 60
-# }
+if os.environ.get('CORS_ALLOWED_ORIGINS'):
+    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(',')
+
+
+MONGODB_URI = os.environ.get('MONGODB_URI',"mongodb+srv://{}:{}@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority".format(MONGO_USERNAME,MONGO_PASSWORD))
+
 
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware', 
-
     'django.middleware.security.SecurityMiddleware',
-    
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware' ,
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    
-    'django.contrib.messages.middleware.MessageMiddleware',
-    
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  
+    'django.contrib.messages.middleware.MessageMiddleware',  
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware'
-
-
-
 ]
-
 
 
 ROOT_URLCONF = 'FormApp.urls'
@@ -182,37 +170,9 @@ DATABASES = {
         }
     }
 }
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-            
-#             'Client': { 
-#            "host": "mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority",
-#            "username": 'Raveen',
-#            "password": '8VBCDyi6BkL3vh',
-#            "authMechanism": "SCRAM-SHA-1", 
-#             },
-#         }
-#     }
-#     DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'CLIENT': {
-#             'host': 'mongodb+srv://Raveen:8VBCDyi6BkL3vh@cluster0.dj3sr.mongodb.net/formdatabase?retryWrites=true&w=majority',
-#             'username': 'Raveen',
-#             'password': '8VBCDyi6BkL3vh',
-#             'authMechanism': 'SCRAM-SHA-1'
-#         }
-#     }
-# }
+
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
-
-# AUTHENTICATION_BACKENDS = (xsxs
-#     'mongoengine.django.auth.MongoEnginexsBackend',
-# )
-# SESSION_ENGINE = 'mongoengine.django.sessions'
-# # SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -232,12 +192,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
-    # To Regex an environment variable, we must first convert them to a raw string.
-    CORS_ALLOWED_ORIGIN_REGEXES = [ r"{0}".format(allowed_origin) for allowed_origin in os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES').split(',')  ]
-
-if os.environ.get('CORS_ALLOWED_ORIGINS'):
-    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS').split(',')
 
 
 # Internationalization
