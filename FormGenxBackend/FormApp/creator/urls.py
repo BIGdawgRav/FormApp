@@ -7,9 +7,9 @@ from .views import(
     CreatorRegistrationAPIView,
     CreatorUserAPIView,
     CreatorUpdateSingleAPIView,
-    CreatorRetireveFormSubmissions
+    CreatorRetireveFormSubmissions,
+    email_confirmation_view
     # CreatorDeployform
- 
 
 )
 
@@ -34,6 +34,9 @@ urlpatterns = [
 
     # Admin get the submissioms for single forms
     path('submissions/<int:pk>',   CreatorRetireveFormSubmissions.as_view(), name=" CreatorRetireveFormSubmissions"),
+
+     # Email confirmation page
+    path('emailconf', email_confirmation_view, name="email_confirmation_view")
 
     
 
