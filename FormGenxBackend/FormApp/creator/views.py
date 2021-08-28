@@ -158,10 +158,9 @@ class CreatorRetireveFormSubmissions(generics.GenericAPIView):
         return Response(serializer.data)
 
     
-
+   
 def email_confirmation_view(request):
-    return render(request, "creator/email_confirmation.html"
-
+    return render(request, "creator/email_confirmation.html")
 
           
 
