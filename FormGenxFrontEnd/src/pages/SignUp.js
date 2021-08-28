@@ -38,13 +38,14 @@ const SignUp = (props) => {
   });
   const [loginDetails, setLoginDetails] = useState({
     firstName: "",
-    lastName:"",
-    email:"",
+    lastName: "",
+    email: "",
     password: "",
     confirmPassword: "",
     check_textInputChange: false,
     secureTextEntry: true,
   })
+
 
 
   useEffect(() => {
@@ -101,7 +102,7 @@ const SignUp = (props) => {
       });
     }
   };
-  
+
 
   const emailInputChange = (e) => {
     if (e.length !== 0) {
@@ -138,14 +139,17 @@ const SignUp = (props) => {
 
   const handleSignUp = (e) => {
 
-    if(e){
+    if (e) {
       e.preventDefault()
     }
 
     console.log("login", loginDetails)
-  
+
     console.log("confirm", loginDetails.confirmPassword)
-  
+
+
+    console.log("lastname", loginDetails.lastName)
+
 
     if (mounted) {
       setLoginState({ isLoading: true });
@@ -154,18 +158,18 @@ const SignUp = (props) => {
           backEndBaseUrl + "/creator/registration/",
 
           {
-            first_name:loginDetails.firstName,
-            last_name:loginDetails.lastname,
+            first_name: loginDetails.firstName,
+            last_name: loginDetails.lastName,
             email: loginDetails.email,
             password1: loginDetails.password,
             password2: loginDetails.confirmPassword,
           },
           {
-            headers: {},
+            headers: { },
           }
         )
         .then((response) => {
-        
+
 
 
           if (response.data.user.is_creator || response.data.user.is_formuser) {
@@ -276,7 +280,7 @@ const SignUp = (props) => {
                             onFocus={(e) => setFirstNameFocus(true)}
                             onBlur={(e) => setFirstNameFocus(false)}
                             onChange={(e) => {
-                              firstNameInputChange (e);
+                              firstNameInputChange(e);
                             }}
                             style={{ width: 400 }}
                           />
@@ -414,12 +418,12 @@ const SignUp = (props) => {
                             type="password"
                             onFocus={(e) => setConfirmPasswordFocus(true)}
                             onBlur={(e) => setConfirmPasswordFocus(false)}
-                            onChange={(val) =>confirmPasswordInputChange(val)}
+                            onChange={(val) => confirmPasswordInputChange(val)}
                             style={{ width: 400 }}
 
                             onKeyDown={(e) => {
-                              
-                         
+
+
                               if (e.key === "Enter") {
                                 handleSignUp(e);
                               }
@@ -435,7 +439,7 @@ const SignUp = (props) => {
                   </div>
 
                 </form>
-              
+
 
 
                 <div className="flex flex-wrap -mx-3 mt-6">
