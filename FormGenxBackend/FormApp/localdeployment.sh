@@ -17,11 +17,11 @@ export MONGO_USERNAME="Raveen"
 export MONGO_PASSWORD="8VBCDyi6BkL3vh"
 
 
-export EMAIL_HOST='localhost'
-export EMAIL_PORT=1025
+export EMAIL_HOST='hzypaflotkskzryl'
+export EMAIL_PORT=587
 export EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 export EMAIL_USE_TLS=True
-export EMAIL_HOST_USER=''
+export EMAIL_HOST_USER='formgenxnotifications@gmail.com'
 export EMAIL_HOST_PASSWORD=''
 
 echo "             ############"
