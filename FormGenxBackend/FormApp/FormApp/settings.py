@@ -25,23 +25,27 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 DEBUG_PROPAGATE_EXCEPTIONS = os.environ.get('DEBUG_PROPAGATE_EXCEPTIONS', False)
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 # Application additions
 AUTH_USER_MODEL = 'user.User'
+
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
+
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/signin')
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/signin')
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/login')
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = os.environ.get('ACCOUNT_EMAIL_CONFIRMATION_REDIRECT_URL', '/login')
 OLD_PASSWORD_FIELD_ENABLED = True
 NOTIFICATIONS_EMAIL_ADDRESS = os.environ.get('NOTIFICATIONS_EMAIL_ADDRESS', "formgenxnotifications@gmail.com")
 MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
 MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD')
+
 SITE_ID = 1
 
 JOB_STILL_VIEWABLE_OFFSET = 4 # We should be able to see a job up to 4 hours after it has passed.
@@ -53,10 +57,8 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', True)
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EHOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -105,7 +107,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-AUTHENTICATION_BACKEND = ["django.contrib.auth.backends.ModelBackend","sesame.backends.ModelBackend"]
+# AUTHENTICATION_BACKEND = ["django.contrib.auth.backends.ModelBackend","sesame.backends.ModelBackend"]
 
 if os.environ.get('CORS_ALLOWED_ORIGIN_REGEXES'):
     # To Regex an environment variable, we must first convert them to a raw string.
@@ -140,7 +142,9 @@ LOGIN_REDIRECT_URL = '/login/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+          'DIRS': [
+            (os.path.join(BASE_DIR, 'creator/templates/creator')),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -172,7 +176,7 @@ DATABASES = {
 }
 
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+# AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -212,4 +216,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_STORAGE = os.environ.get('STATICFILES_STORAGE', 'django.contrib.staticfiles.storage.StaticFilesStorage')

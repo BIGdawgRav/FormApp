@@ -21,10 +21,8 @@ class CreatorRegistrationSerializer(RegisterSerializer):
         print(self)
         user.first_name = self.validated_data.get('first_name', '')
         user.last_name = self.validated_data.get('last_name', '')
-        user.is_vreator = True
+        user.is_creator = True
         user.save(update_fields=['first_name', 'last_name', 'is_creator'])
-        new_creator = Creator.objects.create(user=user,
-             
-         )
+        new_creator = Creator.objects.create(user=user,first_name =user.first_name,last_name =user.last_name)
      
         new_creator.save()

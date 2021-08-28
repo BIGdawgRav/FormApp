@@ -19,9 +19,9 @@ export MONGO_PASSWORD="8VBCDyi6BkL3vh"
 
 export EMAIL_HOST='smtp.gmail.com'
 export EMAIL_PORT=587
-export EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+export EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 export EMAIL_USE_TLS=True
-export EMAIL_HOST_USER='formgenxnotifications@gmail.com'
+export EMAIL_HOST_USER='formgenxnotification@gmail.com'
 export EMAIL_HOST_PASSWORD='gq9gVpLy6HkaiJ'
 
 echo "             ############"
