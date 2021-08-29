@@ -16,13 +16,13 @@
 
 */
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
+// import Dashboard from "@material-ui/icons/Dashboard";
 import Notifications from "@material-ui/icons/Notifications";
 import NoteAdd from "@material-ui/icons/NoteAdd";
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 // core components/views for Admin layout
 
-import DashboardPage from "../views/Dashboard/Dashboard.js";
+// import DashboardPage from "../views/Dashboard/Dashboard.js";
 
 import SubmissionPage from "../views/Submission/index.js";
 import Form from '../views/Form/index'
@@ -42,18 +42,18 @@ const dashboardRoutes = [
     path: "/myform",
     name: "My Forms",
     rtlName: "ملف تعريفي للمستخدم",
-    icon: AssignmentIndIcon ,
+    icon: AssignmentIndIcon,
     component: myForms,
     layout: "/admin"
   },
   {
     path: "/createform",
     name: "Create Form",
-    icon: NoteAdd ,
+    icon: NoteAdd,
     component: Form,
     layout: "/admin"
   },
- 
+
 
   // {
   //   path: "/user",

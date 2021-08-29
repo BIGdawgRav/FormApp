@@ -124,156 +124,152 @@ const LoginPage = (props) => {
             headers: { },
           }
         )
-        .then((response) => {
+        .then((response) => )
+      if (response.data.user.is_creator || response.data.user.is_formuser) {
+        window.sessionStorage.setItem("userToken", response.data.key);
 
-          console.log("djdjd")
-
-          console.log(response)
-          if (response.data.user.is_creator || response.data.user.is_formuser) {
-            window.sessionStorage.setItem("userToken", response.data.key);
-
-            window.sessionStorage.setItem(
-              "isCreator",
-              response.data.user.is_creator
-            );
-            window.sessionStorage.setItem(
-              "isFormUser",
-              response.data.user.is_formuser
-            );
+        window.sessionStorage.setItem(
+          "isCreator",
+          response.data.user.is_creator
+        );
+        window.sessionStorage.setItem(
+          "isFormUser",
+          response.data.user.is_formuser
+        );
 
 
-            props.dispatch({
-              type: "SIGNIN",
-              userToken: response.data.key,
-              isCreator: response.data.user.is_creator,
-              isFormUser: response.data.user.is_formuser,
-              userData: response.data.user,
-            });
-
-            if (response.data.user.is_creator) {
-
-
-              history.push("/admin/dashboard");
-            }
-          } else {
-            props.dispatch({ type: "SIGNOUT" });
-            setErrors({
-              notAuthorised: true,
-            });
-            setLoginState({ isLoading: false });
-          }
-        })
-        .catch((error) => {
-          if (!error.response) {
-            setErrors({
-              otherErrors: "Unknown Error",
-            });
-          } else if (error.response.status === 400) {
-            setErrors({
-              otherErrors: "Unknown Error",
-            });
-          } else if (error.response.status === 400) {
-            setErrors({
-              emailPasswordErrors: 400,
-            });
-          } else {
-            setErrors({
-              otherErrors: error.response.status,
-            });
-          }
-          setLoginState({ isLoading: false });
+        props.dispatch({
+          type: "SIGNIN",
+          userToken: response.data.key,
+          isCreator: response.data.user.is_creator,
+          isFormUser: response.data.user.is_formuser,
+          userData: response.data.user,
         });
+
+        if (response.data.user.is_creator) {
+
+
+          history.push("/admin/dashboard");
+        }
+      } else {
+        props.dispatch({ type: "SIGNOUT" });
+        setErrors({
+          notAuthorised: true,
+        });
+        setLoginState({ isLoading: false });
+      }
+    })
+        .catch ((error) => {
+  if (!error.response) {
+    setErrors({
+      otherErrors: "Unknown Error",
+    });
+  } else if (error.response.status === 400) {
+    setErrors({
+      otherErrors: "Unknown Error",
+    });
+  } else if (error.response.status === 400) {
+    setErrors({
+      emailPasswordErrors: 400,
+    });
+  } else {
+    setErrors({
+      otherErrors: error.response.status,
+    });
+  }
+  setLoginState({ isLoading: false });
+});
     }
-    return () => {
-      setMounted(false);
-    };
+return () => {
+  setMounted(false);
+};
   };
 
-  return (
-    <>
+return (
+  <>
 
 
 
 
-      <Card className="card-register" >
-        <CardHeader >
+    <Card className="card-register" >
+      <CardHeader >
 
 
-          <CardImg
-            alt="..."
+        <CardImg
+          alt="..."
 
 
-            src={require("./../../assets/img/square4.png").default}
-          />
+          src={require("./../../assets/img/square4.png").default}
+        />
 
-          <CardTitle   >  <div style={{ paddingLeft: 50 }}>  Login  </div>  </CardTitle>
+        <CardTitle   >  <div style={{ paddingLeft: 50 }}>  Login  </div>  </CardTitle>
 
-        </CardHeader>
-        <CardBody>
-          <Form className="form">
+      </CardHeader>
+      <CardBody>
+        <Form className="form">
 
-            <InputGroup
-              className={classnames({
-                "input-group-focus": emailFocus,
-              })}
-            >
-              <InputGroupAddon addonType="prepend">
-                <InputGroupText>
-                  <i className="tim-icons icon-email-85" />
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input
-                placeholder="Email"
-                type="text"
-                onFocus={(e) => setEmailFocus(true)}
-                onBlur={(e) => setEmailFocus(false)}
-                onChange={(e) => {
-                  emailInputChange(e);
-                }}
-              />
-            </InputGroup>
-            <InputGroup
-              className={classnames({
-                "input-group-focus": passwordFocus,
-              })}
-            >
-              <InputGroupAddon addonType="prepend">
-                <InputGroupText>
-                  <i className="tim-icons icon-lock-circle" />
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input
-                placeholder="Password"
-                type="password"
-                onFocus={(e) => setPasswordFocus(true)}
-                onBlur={(e) => setPasswordFocus(false)}
-                onChange={(val) => passwordInputChange(val)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSignIn();
-                  }
-                }}
-
-
-              />
-            </InputGroup>
-
-          </Form>
-        </CardBody>
-
-        <CardFooter>
-          <Button className="btn-round" color="info" size="lg" onClick={() => {
-            handleSignIn();
-          }}>
-            Login
-          </Button>
-
-        </CardFooter>
-      </Card>
+          <InputGroup
+            className={classnames({
+              "input-group-focus": emailFocus,
+            })}
+          >
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="tim-icons icon-email-85" />
+              </InputGroupText>
+            </InputGroupAddon>
+            <Input
+              placeholder="Email"
+              type="text"
+              onFocus={(e) => setEmailFocus(true)}
+              onBlur={(e) => setEmailFocus(false)}
+              onChange={(e) => {
+                emailInputChange(e);
+              }}
+            />
+          </InputGroup>
+          <InputGroup
+            className={classnames({
+              "input-group-focus": passwordFocus,
+            })}
+          >
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="tim-icons icon-lock-circle" />
+              </InputGroupText>
+            </InputGroupAddon>
+            <Input
+              placeholder="Password"
+              type="password"
+              onFocus={(e) => setPasswordFocus(true)}
+              onBlur={(e) => setPasswordFocus(false)}
+              onChange={(val) => passwordInputChange(val)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSignIn();
+                }
+              }}
 
 
-    </>
-  );
+            />
+          </InputGroup>
+
+        </Form>
+      </CardBody>
+
+      <CardFooter>
+        <Button className="btn-round" color="info" size="lg" onClick={() => {
+          handleSignIn();
+        }}>
+          Login
+        </Button>
+
+      </CardFooter>
+    </Card>
+
+
+  </>
+);
 }
 
 

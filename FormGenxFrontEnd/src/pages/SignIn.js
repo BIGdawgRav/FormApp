@@ -9,7 +9,7 @@ import classnames from "classnames";
 import { fetchUserForms } from "../reducers/UserFormReducer";
 import store from "../app/store"
 import Button from "../components/CustomButtons/Button"
-
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon.js"
 import {
   Form,
   Input,
@@ -23,7 +23,7 @@ import Header from '../partials/Header';
 
 const SignIn = (props) => {
 
-  const [fullNameFocus, setFullNameFocus] = React.useState(false);
+  // const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
   const [mounted, setMounted] = useState(true);
@@ -297,10 +297,12 @@ const SignIn = (props) => {
                   <div className="flex flex-wrap -mx-3 mt-6">
 
 
-                    <Button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full" type="button" color="info" onClick={() => {
+                    <Button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full h-12" type="button" color="info" onClick={() => {
                       handleSignIn();
                     }}>
-                      Sign in
+                      {loginState.isLoading ? <LoadingIcon /> :
+                        " Sign in"
+                      }
 
                     </Button>
 

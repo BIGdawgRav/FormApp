@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MyFormContent from './MyFormContent'
 import { connect } from "react-redux";
-import store from "../../app/store"
+// import store from "../../app/store"
 import LoadingIcon from "../../components/LoadingIcon/LoadingIcon"
-import {dispatchResetEdit} from "../../functions/updateStateFunctions"
+// import { dispatchResetEdit } from "../../functions/updateStateFunctions"
 
 
-const MyForms = ({ isLoading , formData, userToken,userData,dispatch}) => {
+const MyForms = ({ isLoading, formData, userToken, userData, dispatch }) => {
 
   // dispatchResetEdit(dispatch)
   if (isLoading) {
-       return <LoadingIcon/>;
-      }
+    return <LoadingIcon />;
+  }
 
   return (
-   <div > 
-       <MyFormContent formData={formData}  isLoading = {isLoading}  userToken = {userToken}   userData = {userData} />             
-     </div>
-   
+    <div >
+      <MyFormContent formData={formData} isLoading={isLoading} userToken={userToken} userData={userData} />
+    </div>
+
   );
 };
 

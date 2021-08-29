@@ -7,9 +7,9 @@ import axios from "axios";
 import { backEndBaseUrl } from "../constants/Urls"
 import { notify } from "../functions/functions"
 import Header from '../partials/Header';
-import store from "../app/store"
+// import store from "../app/store"
 import Button from "../components/CustomButtons/Button"
-
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon.js"
 
 import {
 
@@ -143,13 +143,6 @@ const SignUp = (props) => {
       e.preventDefault()
     }
 
-    console.log("login", loginDetails)
-
-    console.log("confirm", loginDetails.confirmPassword)
-
-
-    console.log("lastname", loginDetails.lastName)
-
 
     if (mounted) {
       setLoginState({ isLoading: true });
@@ -170,45 +163,18 @@ const SignUp = (props) => {
         )
         .then((response) => {
 
+          notify(
+            "Successfully Signed up",
+            "Please go to your email and verify your email address",
+            "success"
+          )
+          history.push("/signin");
+          setLoginState({ isLoading: false });
 
 
-          if (response.data.user.is_creator || response.data.user.is_formuser) {
-
-            window.sessionStorage.setItem("userToken", response.data.key);
-
-            window.sessionStorage.setItem(
-              "isCreator",
-              response.data.user.is_creator
-            );
-            window.sessionStorage.setItem(
-              "isFormUser",
-              response.data.user.is_formuser
-            );
-
-
-            props.dispatch({
-              type: "SIGNIN",
-              userToken: response.data.key,
-              isCreator: response.data.user.is_creator,
-              isFormUser: response.data.user.is_formuser,
-              userData: response.data.user,
-            });
-
-            if (response.data.user.is_creator) {
-
-
-              history.push("/admin/myform");
-            }
-          } else {
-
-            props.dispatch({ type: "SIGNOUT" });
-            setErrors({
-              notAuthorised: true,
-            });
-            setLoginState({ isLoading: false });
-          }
         })
         .catch((error) => {
+
           console.log(error.response)
           if (!error.response) {
             setErrors({
@@ -442,20 +408,24 @@ const SignUp = (props) => {
 
 
 
-                <div className="flex flex-wrap -mx-3 mt-6">
 
 
-                  <Button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full" type="button" color="info" onClick={() => {
-                    handleSignUp();
-                  }}>
-                    Get Started
 
-                  </Button>
 
-                  {/* <button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full" onclick={handleSignIn}>Sign in</button>
+                <Button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full h-12" type="button" color="info" onClick={() => {
+                  handleSignUp();
+                }}>
+                  {loginState.isLoading ? <LoadingIcon /> :
+                    "Get Started"
+                  }
+
+                </Button>
+
+
+                {/* <button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full" onclick={handleSignIn}>Sign in</button>
 */}
 
-                </div>
+
 
                 <div className="text-gray-600 text-center mt-6">
                   Already a member? <Link to="/signin" className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign in</Link>

@@ -6,14 +6,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { connect } from "react-redux";
 import axios from "axios";
-import {fetchUserForms } from "../../reducers/UserFormReducer";
+import { fetchUserForms } from "../../reducers/UserFormReducer";
 import { backEndBaseUrl } from "../../constants/Urls"
 import { notify } from "../../functions/functions"
 import { dispatchUpdateForm } from "../../functions/updateStateFunctions"
 
 import GridItem from "../../components/Grid/GridItem.js";
 import Input from '@material-ui/core/Input';
-import {dispatchResetEdit} from "../../functions/updateStateFunctions"
+import { dispatchResetEdit } from "../../functions/updateStateFunctions"
 
 const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch }) => {
 
@@ -22,7 +22,7 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
     data: [],
     formTitle: "Missing Title",
     loading: false,
-    creatorAdminId : "",
+    creatorAdminId: "",
 
   })
 
@@ -32,7 +32,7 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-      
+
     setState({ ...state, data: formdata.data })
   }, [formdata.data]);
 
@@ -56,7 +56,8 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
   };
   const handleSubmit = () => {
 
-   
+
+
     if (formId) {
       setLoading(true)
 
@@ -72,29 +73,30 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
           {
             headers: { Authorization: "Token " + userToken },
           }).then((response) => {
-            console.log("response",response)
 
-      
+
+
             dispatchUpdateForm(dispatch, state.data, formId, formData)
 
             notify("Success", "User details updated.", "success");
-            setState({...state, showPreview:false})
+            setState({ ...state, showPreview: false })
             setLoading(true)
 
 
           }).catch((error) => {
             console.log(error);
-           
+
           });
     }
     else {
       setState({ ...state, loading: true })
-      console.log(state.data)
+
+
       axios
         .post(
           backEndBaseUrl + "/creator/entry/",
           {
-            title:  state.formTitle,
+            title: state.formTitle,
             form_structure: state.data,
             admin: creatorId,
             is_deployed: false,
@@ -109,6 +111,8 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
             setState({ ...state, loading: false, showPreview: false })
             notify("Success", "User details updated.", "success");
 
+          }).catch((error) => {
+            console.log(error)
           })
     }
   }
@@ -119,20 +123,20 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
 
 
 
-          <div style = {{flexDirection:"row" , marginBottom  :10} }>
-            <div></div>
-            <Button variant="primary" style= {{ marginRight : 10}} onClick={() => handleShow()}>
+        <div style={{ flexDirection: "row", marginBottom: 10 }}>
+          <div></div>
+          <Button variant="primary" style={{ marginRight: 10 }} onClick={() => handleShow()}>
             Launch demo modal
-           </Button>
-          </div>
+          </Button>
+        </div>
 
-          <div>
+        <div>
           <Button variant="primary" onClick={() => handleRefresh()}>
             Refresh Form
-           </Button>
-          </div>
+          </Button>
+        </div>
 
-        
+
 
 
 
@@ -170,12 +174,13 @@ const DemoBar = ({ formdata, formId, creatorId, userToken, formData, dispatch })
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-        </Button>
+          </Button>
           <Button variant="primary" onClick={() => {
             handleSubmit()
+
           }}>
             Submit
-        </Button>
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

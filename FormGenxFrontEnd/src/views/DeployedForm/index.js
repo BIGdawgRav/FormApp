@@ -27,7 +27,7 @@ const DeployedForm = () => {
   useEffect(() => {
 
     const requestHeader = {
-      headers: {},
+      headers: { },
     };
 
     setState({ ...state, loading: true })
@@ -36,7 +36,7 @@ const DeployedForm = () => {
 
       setState({ ...state, currentFormData: response.data, currentFormStructure: JSON.parse(response.data[0].form_structure), adminId: response.data[0].admin, formEntryID: response.data[0].id })
 
-      notify("Success", "User details updated.", "success");
+
 
     })
 
@@ -54,9 +54,7 @@ const DeployedForm = () => {
 
   const onSubmit = (saveData) => {
 
-    console.log(state.currentFormStructure)
 
-    console.log(saveData)
 
 
     setState({ ...state, saveUserData: saveData, showModal: true })
@@ -65,10 +63,7 @@ const DeployedForm = () => {
   const handleSubmit = () => {
 
     const FormSubmission = state.saveUserData
-    console.log(FormSubmission)
 
-
-    console.log(state.formEntryID)
 
     axios
       .post(
@@ -80,9 +75,10 @@ const DeployedForm = () => {
           form_entry: state.formEntryID
         },
         {
-          headers: {},
+          headers: { },
         }).then((response) => {
-          notify("Success", "User details updated.", "success");
+          notify("Success", "Form Successfully Submitted", "success");
+
           setState({ ...state, showPreview: false })
         }).catch((error) => {
           console.log(error.response)

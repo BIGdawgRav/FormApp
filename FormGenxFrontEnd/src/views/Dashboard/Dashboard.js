@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React from "react";
 // react plugin for creating charts
 
 // @material-ui/core
@@ -12,8 +12,8 @@ import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 
 import CardBody from "../../components/Card/CardBody.js";
-import {fetchUserForms } from "../../reducers/UserFormReducer";
-import store from "../../app/store"
+// import { fetchUserForms } from "../../reducers/UserFormReducer";
+// import store from "../../app/store"
 
 import styles from "../../assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
@@ -25,11 +25,11 @@ export default function Dashboard() {
   const classes = useStyles();
   return (
     <div>
-    
-      
-     
+
+
+
       <GridContainer>
-       
+
         <GridItem xs={12} sm={12} md={6}>
 
           <Card>

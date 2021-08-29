@@ -107,8 +107,9 @@ class CreatorFormEntryCreatUpdateAPIView(generics.GenericAPIView):
         return Response(serializer.data)
 
     def post(self, request ):
-
+        
         serializer = FormEntrySerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
@@ -124,6 +125,7 @@ class CreatorUpdateSingleAPIView(generics.GenericAPIView):
     def put(self,request,pk):
         form_entry_obj = self.get_queryset().filter(pk=pk)
         serializer = FormEntrySerializer(instance=form_entry_obj.first() , data=request.data)
+        print(serializer)
  
         if serializer.is_valid():
             serializer.save()
