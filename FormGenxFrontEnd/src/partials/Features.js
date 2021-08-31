@@ -30,7 +30,7 @@ function Features() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h1 className="h2 mb-4">Explore maximum customisablity</h1>
+            <h1 className="h2 mb-4">Explore maximum customisability</h1>
             <p className="text-xl text-gray-600">State of the art javascript formbuilder that is completely free to use.</p>
           </div>
 
